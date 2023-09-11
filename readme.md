@@ -20,7 +20,19 @@ A simple yet effective GUI application that not only displays listening ports an
 1. Clone this repository:
 
 ```bash
-git clone [repository_url]
+git clone https://github.com/abdellahi-brahim/Port-Process-Killer
+```
+
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Run the application:
+
+```bash
+python main.py
 ```
 
 ## Screenshots
