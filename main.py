@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, simpledialog
+from tkinter import ttk, messagebox
 from ttkthemes import ThemedTk
 import psutil
+from elevate import elevate
 
 def get_ports_and_processes():
     """Return a sorted list of (port, process) tuples."""
@@ -11,6 +12,8 @@ def get_ports_and_processes():
             process = psutil.Process(conn.pid)
             result.append((conn.laddr.port, process.name(), conn.pid))
     return sorted(result, key=lambda x: x[0])
+
+
 class App:
     def __init__(self, root):
         self.root = root
@@ -34,7 +37,7 @@ class App:
         return self
 
     def _build_filter_inputs(self):
-        filter_label = ttk.Label(self.filters_frame, text="Filter:")
+        filter_label = ttk.Label(self.filters_frame, text="Name:")
         filter_label.grid(row=0, column=0, padx=(0, 10))
         filter_entry = ttk.Entry(self.filters_frame, textvariable=self.filter_var)
         filter_entry.grid(row=0, column=1, sticky=tk.W + tk.E)
@@ -124,6 +127,10 @@ class App:
                 return
 
 if __name__ == "__main__":
+    elevate(show_console=False)
     app = ThemedTk(theme="arc")
+    app.title("Port Process Killer")
+    # app.iconbitmap('app_icon.ico')
     App(app)
     app.mainloop()
+
